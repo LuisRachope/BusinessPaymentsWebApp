@@ -1,4 +1,5 @@
 ﻿using BusinessPaymentsWebApp.Data;
+using BusinessPaymentsWebApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -44,6 +45,7 @@ namespace BusinessPaymentsWebApp
 
             //Services addition on project
             services.AddScoped<SeedingService>();
+            services.AddScoped<CustomerServices>();
 
         }
 

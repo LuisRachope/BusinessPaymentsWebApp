@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using BusinessPaymentsWebApp.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,11 @@ namespace BusinessPaymentsWebApp.Data
     {
         public BusinessPaymentsContext(DbContextOptions<BusinessPaymentsContext> options)
             : base(options)
-        { 
+        {
         }
 
         //Add models hero to instance on Entity Framework
-
+        public DbSet<Customer> Customer { get; set; }
 
     }
 }
