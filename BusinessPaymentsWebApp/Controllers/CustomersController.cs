@@ -1,4 +1,5 @@
-﻿using BusinessPaymentsWebApp.Services;
+﻿using BusinessPaymentsWebApp.Models;
+using BusinessPaymentsWebApp.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -21,5 +22,40 @@ namespace BusinessPaymentsWebApp.Controllers
             var obj = await _customerServices.FindAllAsync();
             return View(obj);
         }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            var obj = await _customerServices.FindByIdAsync(id);
+            return View(obj);
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var obj = await _customerServices.FindByIdAsync(id);
+            return View(obj);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            await _customerServices.RemoveAsync((int)id);
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var obj = await _customerServices.FindByIdAsync(id);
+            return View(obj);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Customer customer)
+        {
+            await _customerServices.UpdateAsync(customer);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
