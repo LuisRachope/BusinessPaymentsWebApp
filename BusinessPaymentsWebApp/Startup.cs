@@ -46,6 +46,8 @@ namespace BusinessPaymentsWebApp
             //Services addition on project
             services.AddScoped<SeedingService>();
             services.AddScoped<CustomerServices>();
+            services.AddScoped<PaymentServices>();
+            services.AddScoped<ReceivableServices>();
 
         }
 

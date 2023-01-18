@@ -3,14 +3,16 @@ using System;
 using BusinessPaymentsWebApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BusinessPaymentsWebApp.Migrations
 {
     [DbContext(typeof(BusinessPaymentsContext))]
-    partial class BusinessPaymentsContextModelSnapshot : ModelSnapshot
+    [Migration("20230117230209_Payments_and_Receivables")]
+    partial class Payments_and_Receivables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

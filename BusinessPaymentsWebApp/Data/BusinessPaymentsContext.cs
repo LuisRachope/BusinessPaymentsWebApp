@@ -17,6 +17,8 @@ namespace BusinessPaymentsWebApp.Data
 
         //Add models hero to instance on Entity Framework
         public DbSet<Customer> Customer { get; set; }
+        public DbSet<Payment> Payment { get; set; }
+        public DbSet<Receivable> Receivable { get; set; }
 
     }
 }

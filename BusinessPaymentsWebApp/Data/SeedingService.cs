@@ -37,6 +37,24 @@ namespace BusinessPaymentsWebApp.Data
             Customer c10 = new Customer(10, "Kain Reaver", "kain2424@outlook.com", "548845496", "");
             _context.AddRange(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10);
 
+            // Creation data of Payments
+            Payment p1 = new Payment(1, c4, 1468.66, new DateTime(2022, 12, 13), "Receivable support Tv");
+            Payment p2 = new Payment(2, c2, 456.91, new DateTime(2022, 11, 24), "");
+            Payment p3 = new Payment(3, c4, 334.49, new DateTime(2022, 04, 03), "");
+            Payment p4 = new Payment(4, c10, 489.84, new DateTime(2022, 09, 11), "");
+            Payment p5 = new Payment(5, c8, 584.56, new DateTime(2023, 01, 09), "");
+            Payment p6 = new Payment(6, c6, 894.64, new DateTime(2023, 01, 14), "");
+            _context.AddRange(p1, p2, p3, p4, p5, p6);
+
+            // Creation data of Receivables
+            Receivable r1 = new Receivable(1, c10, "Notebook Dell - Nvidia XT1090", 2944.13, new DateTime(2023, 01, 09), "");
+            Receivable r2 = new Receivable(2, c1, "PlayStation 5 + God War + 2 Controllers + Headset PS Gold", 2164.17, new DateTime(2022, 01, 14), "");
+            Receivable r3 = new Receivable(3, c6, "License Windows 11 - Home Basic", 645.36, new DateTime(2023, 01, 03), "");
+            Receivable r4 = new Receivable(4, c9, "TV 55 Full HD - Sony", 1493.84, new DateTime(2022, 12, 21), "");
+            Receivable r5 = new Receivable(5, c4, "TV 71 8K - Panasonic + Support TV", 1946.14, new DateTime(2022, 08, 19), "");
+            Receivable r6 = new Receivable(6, c5, "Xbox Series X + 12 months Live Gold", 1806.34, new DateTime(2023, 01, 11), "");
+            _context.AddRange(r1, r2, r3, r4, r5, r6);
+
             // Execution saving data
             _context.SaveChanges();
         }
