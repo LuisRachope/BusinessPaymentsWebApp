@@ -37,5 +37,47 @@ namespace BusinessPaymentsWebApp.Controllers
 
             return View(list);
         }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            var payment = await _paymentServices.FindByIdAsync(id);
+            var customer = await _customerServices.FindByIdAsync(payment.CustomerId);
+
+            Payment obj = new Payment(
+                payment.Id,
+                customer,
+                payment.Amount,
+                payment.DatePayment,
+                payment.Remarks
+                );
+
+            return View(obj);
+        }
+
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var payment = await _paymentServices.FindByIdAsync(id);
+            var customer = await _customerServices.FindByIdAsync(payment.CustomerId);
+
+            Payment obj = new Payment(
+                payment.Id,
+                customer,
+                payment.Amount,
+                payment.DatePayment,
+                payment.Remarks
+                );
+
+            return View(obj);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(Payment payment)
+        {
+            await _paymentServices.Remove(payment);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
