@@ -1,4 +1,5 @@
 ﻿using BusinessPaymentsWebApp.Models;
+using BusinessPaymentsWebApp.Models.ViewModels;
 using BusinessPaymentsWebApp.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -37,6 +38,68 @@ namespace BusinessPaymentsWebApp.Controllers
             }
 
             return View(list);
+        }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            var receivable = await _receivableServices.FindByIdAsync(id);
+            var customer = await _customerServices.FindByIdAsync(receivable.CustomerId);
+
+            Receivable obj = new Receivable(
+                receivable.Id,
+                customer,
+                receivable.Purchase,
+                receivable.Price,
+                receivable.DateCredit,
+                receivable.Remarks
+                );
+
+            return View(obj);
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var receivable = await _receivableServices.FindByIdAsync(id);
+            var customer = await _customerServices.FindByIdAsync(receivable.CustomerId);
+
+            Receivable obj = new Receivable(
+                receivable.Id,
+                customer,
+                receivable.Purchase,
+                receivable.Price,
+                receivable.DateCredit,
+                receivable.Remarks
+                );
+
+            return View(obj);
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public async Task<IActionResult> Delete(Receivable receivable)
+        {
+            await _receivableServices.Remove(receivable);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var receivable = await _receivableServices.FindByIdAsync(id);
+            List<Customer> customers = await _customerServices.FindAllAsync();
+
+            ReceivableFormViewModel viewModel = new ReceivableFormViewModel { Receivable = receivable, Customers = customers };
+
+            return View(viewModel);
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public async Task<IActionResult> Edit(Receivable receivable)
+        {
+            await _receivableServices.Update(receivable);
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

@@ -22,5 +22,21 @@ namespace BusinessPaymentsWebApp.Services
             return await _context.Receivable.ToListAsync();
         }
 
+        public async Task<Receivable> FindByIdAsync(int id)
+        {
+            return await _context.Receivable.FindAsync(id);
+        }
+
+        public async Task Remove(Receivable receivable)
+        {
+            _context.Remove(receivable);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task Update(Receivable receivable)
+        {
+            _context.Update(receivable);
+            await _context.SaveChangesAsync();
+        }
     }
 }
