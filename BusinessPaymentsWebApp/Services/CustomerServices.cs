@@ -34,9 +34,15 @@ namespace BusinessPaymentsWebApp.Services
             await _context.SaveChangesAsync();
         }
 
-        internal async Task UpdateAsync(Customer customer)
+        public async Task UpdateAsync(Customer customer)
         {
             _context.Customer.Update(customer);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task CreateAsync(Customer customer)
+        {
+            _context.Add(customer);
             await _context.SaveChangesAsync();
         }
     }

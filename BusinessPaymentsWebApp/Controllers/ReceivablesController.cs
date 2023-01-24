@@ -78,7 +78,7 @@ namespace BusinessPaymentsWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(Receivable receivable)
         {
-            await _receivableServices.Remove(receivable);
+            await _receivableServices.RemoveAsync(receivable);
 
             return RedirectToAction(nameof(Index));
         }
@@ -97,7 +97,7 @@ namespace BusinessPaymentsWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Receivable receivable)
         {
-            await _receivableServices.Update(receivable);
+            await _receivableServices.UpdateAsync(receivable);
 
             return RedirectToAction(nameof(Index));
         }

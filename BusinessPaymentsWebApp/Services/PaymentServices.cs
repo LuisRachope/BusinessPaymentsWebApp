@@ -27,13 +27,13 @@ namespace BusinessPaymentsWebApp.Services
             return await _context.Payment.FindAsync(id);
         }
 
-        public async Task Remove(Payment payment)
+        public async Task RemoveAsync(Payment payment)
         {
             _context.Remove(payment);
             await _context.SaveChangesAsync();
         }
 
-        public async Task Update(Payment payment)
+        public async Task UpdateAsync(Payment payment)
         {
             _context.Update(payment);
             await _context.SaveChangesAsync();

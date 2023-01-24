@@ -27,13 +27,13 @@ namespace BusinessPaymentsWebApp.Services
             return await _context.Receivable.FindAsync(id);
         }
 
-        public async Task Remove(Receivable receivable)
+        public async Task RemoveAsync(Receivable receivable)
         {
             _context.Remove(receivable);
             await _context.SaveChangesAsync();
         }
 
-        public async Task Update(Receivable receivable)
+        public async Task UpdateAsync(Receivable receivable)
         {
             _context.Update(receivable);
             await _context.SaveChangesAsync();

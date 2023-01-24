@@ -76,7 +76,7 @@ namespace BusinessPaymentsWebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(Payment payment)
         {
-            await _paymentServices.Remove(payment);
+            await _paymentServices.RemoveAsync(payment);
 
             return RedirectToAction(nameof(Index));
         }
@@ -96,7 +96,7 @@ namespace BusinessPaymentsWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Payment payment)
         {
-            await _paymentServices.Update(payment);
+            await _paymentServices.UpdateAsync(payment);
 
             return RedirectToAction(nameof(Index));
         }

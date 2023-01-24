@@ -57,5 +57,18 @@ namespace BusinessPaymentsWebApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public async Task<IActionResult> Create(Customer customer)
+        {
+            await _customerServices.CreateAsync(customer);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
