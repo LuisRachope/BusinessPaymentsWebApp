@@ -1,4 +1,5 @@
 ﻿using BusinessPaymentsWebApp.Models;
+using BusinessPaymentsWebApp.Models.ViewModels;
 using BusinessPaymentsWebApp.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -76,6 +77,26 @@ namespace BusinessPaymentsWebApp.Controllers
         public async Task<IActionResult> Delete(Payment payment)
         {
             await _paymentServices.Remove(payment);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var payment = await _paymentServices.FindByIdAsync(id);
+
+            List<Customer> customers = await _customerServices.FindAllAsync();
+
+            PaymentFormViewModel viewModel = new PaymentFormViewModel { Payment = payment, Customers = customers };
+
+            return View(viewModel);
+        }
+
+        [ValidateAntiForgeryTokenAttribute]
+        [HttpPost]
+        public async Task<IActionResult> Edit(Payment payment)
+        {
+            await _paymentServices.Update(payment);
 
             return RedirectToAction(nameof(Index));
         }

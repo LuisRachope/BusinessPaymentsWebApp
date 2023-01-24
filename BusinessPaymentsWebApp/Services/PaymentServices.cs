@@ -32,5 +32,11 @@ namespace BusinessPaymentsWebApp.Services
             _context.Remove(payment);
             await _context.SaveChangesAsync();
         }
+
+        public async Task Update(Payment payment)
+        {
+            _context.Update(payment);
+            await _context.SaveChangesAsync();
+        }
     }
 }
