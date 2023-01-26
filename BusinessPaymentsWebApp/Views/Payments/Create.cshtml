@@ -1,10 +1,10 @@
-﻿@model BusinessPaymentsWebApp.Models.Payment
+﻿@model BusinessPaymentsWebApp.Models.ViewModels.PaymentFormViewModel
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h2>@ViewData["Title"]</h2>
 
 <h4>Payment</h4>
 <hr />
@@ -13,23 +13,23 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Amount" class="control-label"></label>
-                <input asp-for="Amount" class="form-control" />
-                <span asp-validation-for="Amount" class="text-danger"></span>
+                <label asp-for="Payment.CustomerId" class="control-label"></label>
+                <select asp-for="Payment.CustomerId" class="form-control" asp-items="@(new SelectList(Model.Customers, "Id", "Name"))"></select>
             </div>
             <div class="form-group">
-                <label asp-for="DatePayment" class="control-label"></label>
-                <input asp-for="DatePayment" class="form-control" />
-                <span asp-validation-for="DatePayment" class="text-danger"></span>
+                <label asp-for="Payment.Amount" class="control-label"></label>
+                <input asp-for="Payment.Amount" class="form-control" />
+                <span asp-validation-for="Payment.Amount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Remarks" class="control-label"></label>
-                <input asp-for="Remarks" class="form-control" />
-                <span asp-validation-for="Remarks" class="text-danger"></span>
+                <label asp-for="Payment.DatePayment" class="control-label"></label>
+                <input asp-for="Payment.DatePayment" class="form-control" />
+                <span asp-validation-for="Payment.DatePayment" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CustomerId" class="control-label"></label>
-                <select asp-for="CustomerId" class ="form-control" asp-items="ViewBag.CustomerId"></select>
+                <label asp-for="Payment.Remarks" class="control-label"></label>
+                <input asp-for="Payment.Remarks" class="form-control" />
+                <span asp-validation-for="Payment.Remarks" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

@@ -18,6 +18,7 @@ namespace BusinessPaymentsWebApp.Controllers
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
+            ViewData["Student"] = "Luis Rachope";
 
             return View();
         }

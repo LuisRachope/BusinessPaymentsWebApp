@@ -38,5 +38,11 @@ namespace BusinessPaymentsWebApp.Services
             _context.Update(payment);
             await _context.SaveChangesAsync();
         }
+
+        public async Task CreateAsync(Payment payment)
+        {
+            _context.Add(payment);
+            await _context.SaveChangesAsync();
+        }
     }
 }

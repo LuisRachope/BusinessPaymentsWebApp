@@ -101,5 +101,22 @@ namespace BusinessPaymentsWebApp.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Create()
+        {
+            var customers = await _customerServices.FindAllAsync();
+            ReceivableFormViewModel obj = new ReceivableFormViewModel { Receivable = new Receivable(), Customers = customers };
+
+            return View(obj);
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public async Task<IActionResult> Create(ReceivableFormViewModel obj)
+        {
+            await _receivableServices.CreateAsync(obj.Receivable);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

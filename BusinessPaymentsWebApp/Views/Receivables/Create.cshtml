@@ -1,4 +1,4 @@
-﻿@model BusinessPaymentsWebApp.Models.Receivable
+﻿@model BusinessPaymentsWebApp.Models.ViewModels.ReceivableFormViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -13,28 +13,28 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Purchase" class="control-label"></label>
-                <input asp-for="Purchase" class="form-control" />
-                <span asp-validation-for="Purchase" class="text-danger"></span>
+                <label asp-for="Receivable.CustomerId" class="control-label"></label>
+                <select asp-for="Receivable.CustomerId" class="form-control" asp-items="@(new SelectList(Model.Customers, "Id", "Name"))"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
+                <label asp-for="Receivable.Purchase" class="control-label"></label>
+                <input asp-for="Receivable.Purchase" class="form-control" />
+                <span asp-validation-for="Receivable.Purchase" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DateCredit" class="control-label"></label>
-                <input asp-for="DateCredit" class="form-control" />
-                <span asp-validation-for="DateCredit" class="text-danger"></span>
+                <label asp-for="Receivable.Price" class="control-label"></label>
+                <input asp-for="Receivable.Price" class="form-control" />
+                <span asp-validation-for="Receivable.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Remarks" class="control-label"></label>
-                <input asp-for="Remarks" class="form-control" />
-                <span asp-validation-for="Remarks" class="text-danger"></span>
+                <label asp-for="Receivable.DateCredit" class="control-label"></label>
+                <input asp-for="Receivable.DateCredit" class="form-control" />
+                <span asp-validation-for="Receivable.DateCredit" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CustomerId" class="control-label"></label>
-                <select asp-for="CustomerId" class ="form-control" asp-items="ViewBag.CustomerId"></select>
+                <label asp-for="Receivable.Remarks" class="control-label"></label>
+                <input asp-for="Receivable.Remarks" class="form-control" />
+                <span asp-validation-for="Receivable.Remarks" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

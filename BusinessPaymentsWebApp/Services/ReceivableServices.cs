@@ -38,5 +38,11 @@ namespace BusinessPaymentsWebApp.Services
             _context.Update(receivable);
             await _context.SaveChangesAsync();
         }
+
+        public async Task CreateAsync(Receivable receivable)
+        {
+            _context.Add(receivable);
+            await _context.SaveChangesAsync();
+        }
     }
 }

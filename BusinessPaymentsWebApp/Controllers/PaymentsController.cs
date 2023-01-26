@@ -100,5 +100,23 @@ namespace BusinessPaymentsWebApp.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Create()
+        {
+            var customers = await _customerServices.FindAllAsync();
+
+            PaymentFormViewModel obj = new PaymentFormViewModel { Payment = new Payment(), Customers = customers };
+
+            return View(obj);
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public async Task<IActionResult> Create(PaymentFormViewModel obj)
+        {
+            await _paymentServices.CreateAsync(obj.Payment);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
